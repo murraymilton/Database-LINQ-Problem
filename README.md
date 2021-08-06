@@ -1,2 +1,2 @@
 # Database-LINQ-Problem
-Collaboration  using SQL, C# LINQ, Entity Framework, Pair Programming
+Collaboration on devCodeCamp problems using SQL, C# LINQ, and Entity Framework. To make LINQ queries in C#/ASP.NET.
