@@ -27,14 +27,14 @@ namespace DatabaseFirstLINQ
             ProblemTen();
             ProblemEleven();
             ProblemTwelve();
-            //ProblemThirteen();
-            //ProblemFourteen();
-            //ProblemFifteen();
-            //////ProblemSixteen();
-            ProblemSeventeen();
-            ProblemEighteen();
-            ProblemNineteen();
-            ProblemTwenty();
+            ProblemThirteen();
+            ProblemFourteen();
+            ProblemFifteen();
+            ProblemSixteen();
+            //ProblemSeventeen();
+            //ProblemEighteen();
+            //ProblemNineteen();
+            //ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -65,9 +65,9 @@ namespace DatabaseFirstLINQ
             // Then print the name and price of each product from the above query to the console.
             var productsGreaterThan150 = _context.Products.Where(p => p.Price > 150);
 
-            foreach(Product product in productsGreaterThan150)
+            foreach (Product product in productsGreaterThan150)
             {
-                Console.WriteLine( product.Name + " / " + product.Price);
+                Console.WriteLine(product.Name + " / " + product.Price);
             }
 
         }
@@ -78,7 +78,7 @@ namespace DatabaseFirstLINQ
             // Then print the name of each product from the above query to the console.
 
             var products = _context.Products.Where(p => p.Name.Contains("s"));
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
                 Console.WriteLine(product.Name);
             }
@@ -101,7 +101,7 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
             // Then print each user's email and registration date to the console.
-            var users = _context.Users.Where(u => u.RegistrationDate > new DateTime(2016, 1, 1)  &&  u.RegistrationDate < new DateTime(2018, 1, 1));
+            var users = _context.Users.Where(u => u.RegistrationDate > new DateTime(2016, 1, 1) && u.RegistrationDate < new DateTime(2018, 1, 1));
             foreach (User user in users)
             {
                 Console.WriteLine(user.Email + ": " + user.RegistrationDate);
@@ -131,7 +131,7 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine(shoppingCart.Product.Name + "/" + shoppingCart.Product.Price + " " + shoppingCart.Quantity);
             }
 
-            
+
 
         }
 
@@ -194,8 +194,8 @@ namespace DatabaseFirstLINQ
         private void ProblemThirteen()
         {
             //Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).FirstOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).FirstOrDefault();
+            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
             UserRole newUserRole = new UserRole()
             {
                 UserId = userId,
@@ -209,8 +209,8 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
-            var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p =>  p.Id).FirstOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).FirstOrDefault();
+            var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p => p.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
             ShoppingCart newSelection = new ShoppingCart()
             {
                 UserId = userId,
@@ -237,7 +237,10 @@ namespace DatabaseFirstLINQ
         private void ProblemSixteen()
         {
             // Update the price of the product you created to something different using LINQ.
-
+            var product = _context.Products.Where(u => u.Name == "Grogu Backpack").SingleOrDefault();
+            product.Price = 75;
+            _context.Products.Update(product);
+            _context.SaveChanges()
         }
 
         private void ProblemSeventeen()
