@@ -26,7 +26,7 @@ namespace DatabaseFirstLINQ
             ProblemNine();
             ProblemTen();
             ProblemEleven();
-            //ProblemTwelve();
+            ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
@@ -181,7 +181,14 @@ namespace DatabaseFirstLINQ
         private void ProblemTwelve()
         {
             // Create a new Product object and add that product to the Products table using LINQ.
-
+            Product newProduct = new Product()
+            {
+                Name = "Grogu Backpack",
+                Description = "Mandalorian star Grogu themed backpack",
+                Price = 80
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
         }
 
         private void ProblemThirteen()
