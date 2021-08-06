@@ -25,7 +25,7 @@ namespace DatabaseFirstLINQ
             ProblemEight();
             ProblemNine();
             ProblemTen();
-            //ProblemEleven();
+            ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
@@ -158,7 +158,7 @@ namespace DatabaseFirstLINQ
             {
 
 
-                Console.WriteLine($"{employee.User.Email} has {employee.Product.Name} in cart for $ {employee.Product.Price} and  {employee.Quantity} product(s) ");
+                Console.WriteLine($"{employee.User.Email} has {employee.Product.Name} in cart for ${employee.Product.Price} and  {employee.Quantity} product(s) ");
             }
         }
 
