@@ -27,14 +27,14 @@ namespace DatabaseFirstLINQ
             ProblemTen();
             ProblemEleven();
             ProblemTwelve();
-            ProblemThirteen();
-            ProblemFourteen();
-            ProblemFifteen();
-            //ProblemSixteen();
-            //ProblemSeventeen();
-            //ProblemEighteen();
-            //ProblemNineteen();
-            //ProblemTwenty();
+            //ProblemThirteen();
+            //ProblemFourteen();
+            //ProblemFifteen();
+            //////ProblemSixteen();
+            ProblemSeventeen();
+            ProblemEighteen();
+            ProblemNineteen();
+            ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -209,8 +209,8 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
-            var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p =>  p.Id).SingleOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p =>  p.Id).FirstOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).FirstOrDefault();
             ShoppingCart newSelection = new ShoppingCart()
             {
                 UserId = userId,
@@ -261,6 +261,9 @@ namespace DatabaseFirstLINQ
         private void ProblemEighteen()
         {
             // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
+            var userRoles = _context.UserRoles.Include(user => user.User).Where(ur => ur.User.Email == "david@gmail.com").SingleOrDefault();
+            _context.UserRoles.Remove(userRoles);
+            _context.SaveChanges();
 
         }
 
@@ -268,7 +271,7 @@ namespace DatabaseFirstLINQ
         {
             // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
             // HINT: Loop
-            var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "oda@gmail.com");
+            var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "david@gmail.com");
             foreach (ShoppingCart userProductRelationship in shoppingCartProducts)
             {
                 _context.ShoppingCarts.Remove(userProductRelationship);
