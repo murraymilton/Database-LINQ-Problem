@@ -35,6 +35,10 @@ namespace DatabaseFirstLINQ
             //ProblemEighteen();
             //ProblemNineteen();
             //ProblemTwenty();
+<<<<<<< HEAD
+=======
+            BonusOne();
+>>>>>>> 1f12d7412ef5a24a79906130d59af39cc85cbb95
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -194,8 +198,8 @@ namespace DatabaseFirstLINQ
         private void ProblemThirteen()
         {
             //Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).FirstOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).FirstOrDefault();
+            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
             UserRole newUserRole = new UserRole()
             {
                 UserId = userId,
@@ -209,8 +213,13 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
+<<<<<<< HEAD
             var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p => p.Id).FirstOrDefault();
             var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).FirstOrDefault();
+=======
+            var productId = _context.Products.Where(p => p.Name == "Grogu Backpack").Select(p => p.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+>>>>>>> 1f12d7412ef5a24a79906130d59af39cc85cbb95
             ShoppingCart newSelection = new ShoppingCart()
             {
                 UserId = userId,
@@ -237,7 +246,10 @@ namespace DatabaseFirstLINQ
         private void ProblemSixteen()
         {
             // Update the price of the product you created to something different using LINQ.
-
+            var product = _context.Products.Where(u => u.Name == "Grogu Backpack").SingleOrDefault();
+            product.Price = 75;
+            _context.Products.Update(product);
+            _context.SaveChanges();
         }
 
         private void ProblemSeventeen()
@@ -282,6 +294,7 @@ namespace DatabaseFirstLINQ
         private void ProblemTwenty()
         {
             // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+<<<<<<< HEAD
             var userOda = _context.Users.Where(u => u.Email == "oda@gmail.com").SingleOrDefault();
             _context.Users.Remove(userOda);
             _context.SaveChanges();
@@ -289,6 +302,8 @@ namespace DatabaseFirstLINQ
             {
                 Console.WriteLine(user.Email);
             }
+=======
+>>>>>>> 1f12d7412ef5a24a79906130d59af39cc85cbb95
 
         }
 
@@ -299,6 +314,22 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.WriteLine(" Enter Email");
+            string email = Console.ReadLine();
+
+            Console.WriteLine(" Enter password");
+            string password = Console.ReadLine();
+
+            var users = _context.Users.Where(u => u.Email == email && u.Password == password).SingleOrDefault();
+            if (users == null)
+            {
+                Console.WriteLine("Invalid Email or Password.");
+            }
+
+            else
+            {
+                Console.WriteLine("Signed In!");
+            }
         }
 
         private void BonusTwo()
@@ -389,6 +420,7 @@ namespace DatabaseFirstLINQ
             foreach(var)
         }
     }
+<<<<<<< HEAD
 }
 
         
@@ -397,3 +429,6 @@ namespace DatabaseFirstLINQ
 
 
 
+=======
+}
+>>>>>>> 1f12d7412ef5a24a79906130d59af39cc85cbb95
